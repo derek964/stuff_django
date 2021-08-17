@@ -8,7 +8,7 @@ def index(request):
 def stuffinfo(request):
     stuffinfos = stuff.objects.all()
     return render(request, 'stuffinfo.html', context=locals())
-
+#增加部门设置
 def dept_setting(request):
     depts = dept.objects.all()
     return render(request, 'dept_setting.html', context=locals())
