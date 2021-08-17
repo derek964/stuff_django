@@ -1,5 +1,31 @@
 {% extends 'BASE01.html' %}
 
 {% block content %}
-   This is a dept_setting Page!!!!
+   <table class="table table-bordered table7_demo">
+    <thead>
+        <tr>
+            <th>部门编码</th>
+            <th>部门名称</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for i in depts %}
+            <tr>
+            <td>{{ i.deptcode }}</td>
+            <td>{{ i.deptname }}</td>
+            <td>
+                <button class="btn btn-xs btn-success" title="激活">
+                    <i class="glyphicon glyphicon-ok"></i>
+                </button>
+                <button class="btn btn-xs btn-warning" title="编辑">
+                    <i class="glyphicon glyphicon-edit"></i>
+                </button>
+                <button class="btn btn-xs btn-danger" title="删除">
+                    <i class="glyphicon glyphicon-remove"></i>
+                </button>
+            </td>
+            </tr>
+        {% endfor %}
+    </tbody>
+    </table>
 {% endblock %}

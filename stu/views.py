@@ -10,7 +10,8 @@ def stuffinfo(request):
     return render(request, 'stuffinfo.html', context=locals())
 
 def dept_setting(request):
-    return render(request, 'dept_setting.html')
+    depts = dept.objects.all()
+    return render(request, 'dept_setting.html', context=locals())
 
 def proj_setting(request):
     return render(request, 'proj_setting.html')
