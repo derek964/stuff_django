@@ -1,5 +1,36 @@
 {% extends 'BASE01.html' %}
 
 {% block content %}
-   This is a index Page!!!!
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>所在部门</th>
+            <th>员工编号</th>
+            <th>姓名</th>
+            <th>所在岗位</th>
+            <th>岗位类型</th>
+            <th>员工类型</th>
+            <th>签约公司</th>
+            <th>员工状态</th>
+            <th>所在产品线</th>
+            <th>备注</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for i in stuffs_art %}
+            <tr>
+                <td>{{ i.deptname }}</td>
+                <td>{{ i.scode }}</td>
+                <td>{{ i.sname }}</td>
+                <td>{{ i.jobname }}</td>
+                <td>{{ i.jobname.jobtypename }}</td>
+                <td>{{ i.stufftypename }}</td>
+                <td>{{ i.companyname }}</td>
+                <td>{{ i.status }}</td>
+                <td>{{ i.productname }}</td>
+                <td>{{ i.notes }}</td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
 {% endblock %}

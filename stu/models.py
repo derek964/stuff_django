@@ -28,8 +28,8 @@ class Job(models.Model):
 
 # 产品线(cymini, creativity2, Z1)
 class Product(models.Model):
-    productcode = models.CharField(max_length=10, unique=True, primary_key=True)
-    productname = models.CharField(max_length=10, unique=True, verbose_name="产品线")
+    productcode = models.CharField(max_length=20, unique=True, primary_key=True)
+    productname = models.CharField(max_length=20, unique=True, verbose_name="产品线")
 
     def __str__(self):
         return self.productname
@@ -56,6 +56,3 @@ class Stuff(models.Model):
     productname = models.ForeignKey(Product, on_delete=models.CASCADE, verbose_name="所在产品线")  # 所在产品线
     notes = models.TextField(blank=True, max_length=500, verbose_name="备注")     #备注
     # projname = models.ForeignKey(project, on_delete=models.CASCADE)
-
-    def __str__(self):
-        return self.sname

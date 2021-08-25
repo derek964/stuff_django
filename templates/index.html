@@ -1,11 +1,6 @@
 {% extends 'BASE01.html' %}
 
 {% block content %}
-   <!--
-如果没有引用以下文件，请去掉此注释
-<link href="https://magicbox.bk.tencent.com/static_api/v3/assets/bootstrap-3.3.4/css/bootstrap.min.css" rel="stylesheet">
-<link href="https://magicbox.bk.tencent.com/static_api/v3/bk/css/bk.css" rel="stylesheet">
--->
 <table class="table table-bordered">
     <thead>
         <tr>
@@ -22,16 +17,16 @@
         </tr>
     </thead>
     <tbody>
-        {% for i in stuff_all %}
+        {% for i in stuffs_all %}
             <tr>
                 <td>{{ i.deptname }}</td>
                 <td>{{ i.scode }}</td>
                 <td>{{ i.sname }}</td>
                 <td>{{ i.jobname }}</td>
-                <td>{{ i.jobname_id }}</td>
+                <td>{{ i.jobname.jobtypename }}</td>
                 <td>{{ i.stufftypename }}</td>
                 <td>{{ i.companyname }}</td>
-                <td>{{ i.stuff_status }}</td>
+                <td>{{ i.status }}</td>
                 <td>{{ i.productname }}</td>
                 <td>{{ i.notes }}</td>
             </tr>
