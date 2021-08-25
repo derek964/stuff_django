@@ -1,8 +1,13 @@
 from django.shortcuts import render
+from stu.models import *
 
 # Create your views here.
 def index(request):
     return render(request, 'index.html')
+
+def stuff_all(request):
+    stuff_all = Stuff.objects.all()
+    return render(request, 'index.html', context=locals())
 
 def n1(request):
     return render(request, 'n1.html')

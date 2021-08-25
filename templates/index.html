@@ -1,5 +1,41 @@
 {% extends 'BASE01.html' %}
 
 {% block content %}
-   This is a index Page!!!!
+   <!--
+如果没有引用以下文件，请去掉此注释
+<link href="https://magicbox.bk.tencent.com/static_api/v3/assets/bootstrap-3.3.4/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://magicbox.bk.tencent.com/static_api/v3/bk/css/bk.css" rel="stylesheet">
+-->
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>所在部门</th>
+            <th>员工编号</th>
+            <th>姓名</th>
+            <th>所在岗位</th>
+            <th>岗位类型</th>
+            <th>员工类型</th>
+            <th>签约公司</th>
+            <th>员工状态</th>
+            <th>所在产品线</th>
+            <th>备注</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for i in stuff_all %}
+            <tr>
+                <td>{{ i.deptname }}</td>
+                <td>{{ i.scode }}</td>
+                <td>{{ i.sname }}</td>
+                <td>{{ i.jobname }}</td>
+                <td>{{ i.jobname_id }}</td>
+                <td>{{ i.stufftypename }}</td>
+                <td>{{ i.companyname }}</td>
+                <td>{{ i.stuff_status }}</td>
+                <td>{{ i.productname }}</td>
+                <td>{{ i.notes }}</td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
 {% endblock %}
