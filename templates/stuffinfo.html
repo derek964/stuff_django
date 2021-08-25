@@ -1,0 +1,24 @@
+{% extends 'BASE01.html' %}
+
+{% block content %}
+   <table class="table table-bordered">
+    <thead>
+        <tr>
+            <th style="width:10%">编码</th>
+            <th style="width:20%;">姓名</th>
+            <th>所在部门</th>
+            <th>所在项目</th>
+        </tr>
+    </thead>
+    <tbody>
+       {% for i in stuffinfos %}
+            <tr>
+                <td>{{ i.scode }}</td>
+                <td>{{ i.sname }}</td>
+                <td>{{ i.deptname }}</td>
+                <td>{{ i.projname }}</td>
+            </tr>
+       {% endfor %}
+    </tbody>
+</table>
+{% endblock %}
