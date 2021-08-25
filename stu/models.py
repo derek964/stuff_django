@@ -1,7 +1,7 @@
 from django.db import models
 
 # Create your models here.
-#组织全称
+#组织全称 部门名称
 class Dept(models.Model):
     deptcode = models.CharField(max_length=10, unique=True, primary_key=True)
     deptname = models.CharField(max_length=10, unique=True)
@@ -26,31 +26,6 @@ class Job(models.Model):
     def __str__(self):
         return self.jobname
 
-#员工类型(正职、内包、外包、基地)
-class StuffType(models.Model):
-    stufftypecode = models.CharField(max_length=10, unique=True, primary_key=True)
-    stufftypename = models.CharField(max_length=10, unique=True)
-
-    def __str__(self):
-        return self.stufftypename
-
-#签约公司(腾讯公司、腾娱公司)
-class Company(models.Model):
-    companycode = models.CharField(max_length=10, unique=True, primary_key=True)
-    companyname = models.CharField(max_length=10, unique=True)
-
-    def __str__(self):
-        return self.companyname
-
-
-# 员工状态(在职、待招)
-class Status(models.Model):
-    statuscode = models.CharField(max_length=10, unique=True, primary_key=True)
-    statusname = models.CharField(max_length=10, unique=True)
-
-    def __str__(self):
-        return self.statusname
-
 # 产品线(cymini, creativity2, Z1)
 class Product(models.Model):
     productcode = models.CharField(max_length=10, unique=True, primary_key=True)
@@ -68,13 +43,19 @@ class Product(models.Model):
 #         return self.projname
 
 class Stuff(models.Model):
-    deptname = models.ForeignKey(Dept, on_delete=models.CASCADE)    #组织全程
-    scode = models.CharField(max_length=10, unique=True, primary_key=True)  #员工编码
-    sname = models.CharField(max_length=10, unique=True)    #姓名
-    jobname = models.ForeignKey(Job, on_delete=models.CASCADE)  #所在岗位
-    jobtypename = models.ForeignKey(JobType, on_delete=models.CASCADE)  # 岗位类型
-    stufftypename = models.ForeignKey(StuffType, on_delete=models.CASCADE)  # 员工类型
-    companyname = models.ForeignKey(Company, on_delete=models.CASCADE)  # 签约公司
-    statusname = models.ForeignKey(Status, on_delete=models.CASCADE)  # 员工状态
-    productname = models.ForeignKey(Product, on_delete=models.CASCADE)  # 所在产品线
+    stuff_status = models.TextChoices('status', '在职 待招')
+    stuff_type = models.TextChoices("type", "正职 内包 外包 基地")
+    stuff_company = models.TextChoices("company", "腾讯公司 腾娱公司")
+    deptname = models.ForeignKey(Dept, on_delete=models.CASCADE, verbose_name="组织全称")    #组织全称
+    scode = models.CharField(max_length=10, unique=True, primary_key=True, verbose_name="员工编码")  #员工编码
+    sname = models.CharField(max_length=10, unique=True, verbose_name="姓名")    #姓名
+    jobname = models.ForeignKey(Job, on_delete=models.CASCADE, verbose_name="所在岗位")  #所在岗位
+    jobtypename = models.ForeignKey(JobType, on_delete=models.CASCADE, verbose_name="岗位类型")  # 岗位类型
+    stufftypename = models.CharField(blank=True, choices=stuff_type.choices, max_length=10, verbose_name="员工类型")  # 员工类型
+    companyname = models.CharField(blank=True, choices=stuff_company.choices, max_length=10,verbose_name="签约公司")  # 签约公司
+    status = models.CharField(blank=True, choices=stuff_status.choices, max_length=10, verbose_name="状态")  # 员工状态
+    productname = models.ForeignKey(Product, on_delete=models.CASCADE, verbose_name="所在产品线")  # 所在产品线
     # projname = models.ForeignKey(project, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.sname
