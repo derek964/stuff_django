@@ -3,22 +3,22 @@ from stu.models import *
 
 # Register your models here.
 class NewDept(admin.ModelAdmin):
-    list_display = [ 'deptname']
+    list_display = ['deptname']
 
 class NewJobType(admin.ModelAdmin):
-    list_display = ['jobtypecode', 'jobtypename']
+    list_display = ['jobtypename']
 
 class NewJob(admin.ModelAdmin):
-    list_display = ['jobcode', 'jobname']
+    list_display = ['jobname', 'jobtypename']
 
 class NewProduct(admin.ModelAdmin):
-    list_display = ['productcode', 'productname']
+    list_display = ['productname']
 
 # class Newproject(admin.ModelAdmin):
 #     list_display = ['projcode', 'projname']
 
 class NewStuff(admin.ModelAdmin):
-    list_display = ['deptname', 'scode', 'sname', 'jobname', 'jobtypename', 'stufftypename', 'companyname', 'status', 'productname']
+    list_display = ['deptname', 'scode', 'sname', 'jobname', 'stufftypename', 'companyname', 'status', 'productname']
 
 admin.site.register(Dept, NewDept)
 admin.site.register(JobType, NewJobType)
