@@ -2,7 +2,7 @@ from django.conf.urls import url
 from stu.views import *
 
 urlpatterns = [
-    url(r'^$', index),
+    url(r'^$', login),
     url(r'^index/', index),
     url(r'^n1/', n1),
     url(r'^z1/', z1),

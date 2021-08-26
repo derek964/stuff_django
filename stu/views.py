@@ -1,8 +1,27 @@
-from django.shortcuts import render
+from django.http import HttpResponseRedirect
+from django.shortcuts import render, redirect
 from stu.models import *
 from django.db.models import Q
+from django.contrib import auth
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
+def login(request):
+    if request.method == "POST" and request.POST:
+        username = request.POST.get("username")
+        password = request.POST.get("password")
+        userinfo = auth.authenticate(username=username, password=password)
+        if userinfo:
+            auth.login(request, userinfo)
+            platinfo = platuser.objects.filter(platuser=username)
+            if platinfo:
+                return HttpResponseRedirect('/plat/')
+            else:
+                return HttpResponseRedirect('/index/')
+        print(username, password)
+        return redirect('/index')
+    return render(request, 'login.html')
+
 def index(request):
     stuffs_all = Stuff.objects.all()
     return render(request, 'index.html', context=locals())

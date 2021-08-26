@@ -1,6 +1,11 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 # Create your models here.
+# 这里是用户信息
+class platuser(models.Model):
+    platuser = models.ForeignKey(User, to_field='username', on_delete=models.CASCADE)
+
 #组织全称 部门名称
 class Dept(models.Model):
     deptcode = models.CharField(max_length=10, unique=True, primary_key=True)
