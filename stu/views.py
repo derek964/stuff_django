@@ -24,6 +24,7 @@ def login(request):
 
 def index(request):
     stuffs_all = Stuff.objects.all()
+    stuffs_count = Stuff.objects.count()
     return render(request, 'index.html', context=locals())
 
 def n1(request):
